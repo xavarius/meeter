@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "632120346762",
+    "firebase_url": "https://meeter-f4a8d.firebaseio.com",
+    "project_id": "meeter-f4a8d",
+    "storage_bucket": "meeter-f4a8d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:632120346762:android:75e99c343a27c09a",
+        "android_client_info": {
+          "package_name": "com.maciejmalak.meeter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "632120346762-9plsr21jom6q0h8jhcf344igm9ig3ua5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.maciejmalak.meeter",
+            "certificate_hash": "532E70E11FC1DDD6F0E625ACAC157911DB7C5C9A"
+          }
+        },
+        {
+          "client_id": "632120346762-4lb8o8u37q25bg1cptkurmfsk8m66kmd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGucxyiw-cmm5ykS4GdXf9uIcsmLGFwqk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "632120346762-4lb8o8u37q25bg1cptkurmfsk8m66kmd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
