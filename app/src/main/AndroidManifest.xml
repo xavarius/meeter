@@ -3,6 +3,7 @@
     package="com.maciejmalak.meeter">
 
     <application
+        android:name=".kotlin.AndroidApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
