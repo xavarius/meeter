@@ -1,77 +1,80 @@
 buildscript {
-    ext {
-        kotlin_version = '1.0.4'
-        leak_canary_version = '1.5'
-    }
+  ext {
+    kotlin_version = '1.0.5-2'
+    leak_canary_version = '1.5'
+    butterknife_ver = '8.4.0'
+    dagger_ver = '2.7'
+    retrolambda_version = '3.3.1'
+  }
 
-    repositories {
-        mavenCentral()
-    }
+  repositories {
+    mavenCentral()
+  }
 
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
+  dependencies {
+    classpath "me.tatarka:gradle-retrolambda:$retrolambda_version"
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+  }
 }
 
 apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.hugo'
+apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'kotlin-android'
 
 android {
-    def globalConf = rootProject.extensions.getByName("ext")
+  def globalConf = rootProject.extensions.getByName("ext")
 
-    compileSdkVersion globalConf.getAt("androidCompileSdkVersion")
-    buildToolsVersion globalConf.getAt("androidBuildToolVersion")
+  compileSdkVersion globalConf.getAt("androidCompileSdkVersion")
+  buildToolsVersion globalConf.getAt("androidBuildToolVersion")
 
-    defaultConfig {
-        applicationId globalConf.getAt("androidApplicationId")
-        minSdkVersion globalConf.getAt("androidMinSdkVersion")
-        targetSdkVersion globalConf.getAt("androidTragetSdkVersion")
-        versionCode globalConf.getAt("androidVersionCode")
-        versionName globalConf.getAt("androidVersionName")
+  defaultConfig {
+    applicationId globalConf.getAt("androidApplicationId")
+    minSdkVersion globalConf.getAt("androidMinSdkVersion")
+    targetSdkVersion globalConf.getAt("androidTragetSdkVersion")
+    versionCode globalConf.getAt("androidVersionCode")
+    versionName globalConf.getAt("androidVersionName")
+  }
 
-        jackOptions {
-            enabled true
-        }
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
+  }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
+  compile fileTree(dir: 'libs', include: ['*.jar'])
+  testCompile 'junit:junit:4.12'
 
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
-    compile 'com.jakewharton:butterknife:8.4.0'
+  compile 'com.android.support:appcompat-v7:25.0.0'
+  compile 'com.android.support:design:25.0.0'
 
-    compile 'com.android.support:appcompat-v7:25.0.0'
-    compile 'com.android.support:design:25.0.0'
+  compile 'com.google.firebase:firebase-auth:9.8.0'
+  compile 'com.google.android.gms:play-services-auth:9.8.0'
 
-    compile 'com.google.firebase:firebase-auth:9.8.0'
-    compile 'com.google.android.gms:play-services-auth:9.8.0'
+  annotationProcessor "com.jakewharton:butterknife-compiler:$butterknife_ver"
+  compile "com.jakewharton:butterknife:$butterknife_ver"
 
-    compile 'com.google.dagger:dagger:2.7'
-    annotationProcessor "com.google.dagger:dagger-compiler:2.7"
+  compile "com.google.dagger:dagger:$dagger_ver"
+  annotationProcessor "com.google.dagger:dagger-compiler:$dagger_ver"
 
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+  compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-    debugCompile "com.squareup.leakcanary:leakcanary-android:$leak_canary_version"
-    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leak_canary_version"
-    testCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leak_canary_version"
+  debugCompile "com.squareup.leakcanary:leakcanary-android:$leak_canary_version"
+  releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leak_canary_version"
+  testCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leak_canary_version"
 }
 
 sourceSets {
-    main.java.srcDirs += 'src/main/kotlin'
+  main.java.srcDirs += 'src/main/kotlin'
 }
 
+/*Required by Firebase library / play services auth*/
 apply plugin: 'com.google.gms.google-services'

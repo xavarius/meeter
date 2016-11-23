@@ -15,11 +15,11 @@ allprojects {
     }
 
     ext {
-        androidCompileSdkVersion = 25
-        androidBuildToolVersion = "25.0.0"
+        androidCompileSdkVersion = 24
+        androidBuildToolVersion = "24.0.1"
         androidApplicationId = "com.maciejmalak.meeter"
         androidMinSdkVersion = 19
-        androidTragetSdkVersion = 25
+        androidTragetSdkVersion = 24
         androidVersionCode = 1
         androidVersionName = "1.0"
     }
