@@ -1,12 +1,14 @@
 package com.maciejmalak.meeter.domain.interactors.base;
 
-import java.util.concurrent.Executor;
+import com.maciejmalak.meeter.domain.MainThread;
+import com.maciejmalak.meeter.domain.executor.ThreadExecutor;
 import javax.inject.Inject;
 
 /* TODO How to inject Executor with Dagger2? */
 /*TODO Do we need here explicity implementation of Runnable */
-public abstract class AbstractInteractor implements Interactor, Runnable {
-  @Inject protected Executor mThreadExecutor;
+public abstract class AbstractInteractor implements Interactor {
+  @Inject protected MainThread mMainThread;
+  @Inject ThreadExecutor mThreadExecutor;
 
   private volatile boolean mIsCanceled;
   private volatile boolean mIsRunning;

@@ -16,7 +16,6 @@ import dagger.Component;
 )
 public interface ActivityComponent {
   void inject(final MainActivity mainActivity);
-  void inject(final LoginActivity loginActivity);
 
   BaseActivity baseActivity();
 }

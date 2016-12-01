@@ -4,10 +4,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import javax.inject.Inject;
-import javax.inject.Singleton;
 
-@Singleton
 public class ThreadExecutor implements Executor {
   private static final int INITIAL_POOL_SIZE = 3;
   private static final int MAX_POOL_SIZE = 5;
@@ -17,7 +14,6 @@ public class ThreadExecutor implements Executor {
   private final LinkedBlockingDeque<Runnable> mThreadQueue;
   private static ThreadPoolExecutor mThreadPool;
 
-  @Inject
   public ThreadExecutor() {
     mThreadQueue = new LinkedBlockingDeque<>();
     mThreadPool = new ThreadPoolExecutor(INITIAL_POOL_SIZE, MAX_POOL_SIZE,
@@ -25,7 +21,7 @@ public class ThreadExecutor implements Executor {
   }
 
   @Override public void execute(Runnable runnable) {
-    if (runnable == null) throw new IllegalArgumentException("Runnable canot be null");
+    if (runnable == null) throw new IllegalArgumentException("Runnable cannot be null");
     mThreadPool.execute(runnable);
   }
 }

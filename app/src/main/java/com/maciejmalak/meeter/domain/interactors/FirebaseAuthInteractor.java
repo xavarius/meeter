@@ -1,7 +1,12 @@
 package com.maciejmalak.meeter.domain.interactors;
 
-/*TODO Jak wstrzyknąć zarządzanie MainThread żeby móc łatwo zrobić POSTA? */
-public interface FirebaseAuthInteractor {
+import com.maciejmalak.meeter.domain.interactors.base.Interactor;
+import org.jetbrains.annotations.NotNull;
+
+public interface FirebaseAuthInteractor extends Interactor {
+
+  void setCallback(@NotNull Callback callback);
+
   interface Callback {
     void onFirebaseUserAuthenticated();
     void onFirebaseAuthError();
