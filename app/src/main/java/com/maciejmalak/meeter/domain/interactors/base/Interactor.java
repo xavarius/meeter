@@ -1,5 +1,5 @@
 package com.maciejmalak.meeter.domain.interactors.base;
 
-public interface Interactor {
+public interface Interactor extends Runnable {
   void execute();
 }

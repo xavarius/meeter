@@ -1,4 +1,7 @@
 <resources>
   <string name="app_name">meeter</string>
   <string name="sign_in_error">Something went wrong during signing in. Check internet. Try again.</string>
+
+
+  <string name="FIREBASE_AUTH_TOKEN">632120346762-4lb8o8u37q25bg1cptkurmfsk8m66kmd.apps.googleusercontent.com</string>
 </resources>

@@ -9,12 +9,19 @@ import com.maciejmalak.meeter.di.modules.ActivityModule;
 import com.maciejmalak.meeter.navigation.Navigator;
 import javax.inject.Inject;
 
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
   @Inject Navigator mNavigator;
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    setupView();
+    initializeInjector();
+    injectViewToPresenter();
   }
+
+  protected abstract void setupView();
+  protected abstract void initializeInjector();
+  protected abstract void injectViewToPresenter();
 
   protected ApplicationComponent getApplicationComponent() {
     return ((AndroidApplication) getApplication()).getApplicationComponent();
