@@ -2,6 +2,8 @@ package com.maciejmalak.meeter.view.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 import butterknife.BindView;
@@ -15,15 +17,19 @@ import com.maciejmalak.meeter.view.HomeMapView;
 import javax.inject.Inject;
 import org.jetbrains.annotations.NotNull;
 
-/*TODO remove every unnessesary reference when activity is stopped/destroyed/closed */
 public class MainActivity extends BaseActivity implements HomeMapView {
   @Inject HomeMapPresenter mPresenter;
   @BindView(R.id.toolbar) Toolbar mToolbar;
 
-  private ActivityComponent mComponent;
-
   public static Intent getCallingIntent(@NotNull Context context) {
-    return new Intent(context, MainActivity.class);
+    final Intent launch = new Intent(context, MainActivity.class);
+    launch.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+    return launch;
+  }
+
+  @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    mPresenter.onCreated();
   }
 
   @Override protected void setupView() {
@@ -33,14 +39,13 @@ public class MainActivity extends BaseActivity implements HomeMapView {
   }
 
   @Override protected void initializeInjector() {
-    mComponent = DaggerActivityComponent.builder()
+    final ActivityComponent component = DaggerActivityComponent.builder()
         .applicationComponent(getApplicationComponent())
         .activityModule(getActivityModule())
         .build();
-    mComponent.inject(this);
+    component.inject(this);
   }
 
-/*TODO Injecting view to Presenter by Dagger? */
   @Override protected void injectViewToPresenter() {
     mPresenter.setView(this);
   }
@@ -53,7 +58,6 @@ public class MainActivity extends BaseActivity implements HomeMapView {
     mNavigator.navigateToLogin(this);
   }
 
-  /*TODO maybe extension function instead of repeated code?*/
   @Override public void showShortError(int id) {
     final String err = getString(id);
     Toast.makeText(this, err, Toast.LENGTH_SHORT).show();

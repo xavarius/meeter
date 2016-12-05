@@ -12,6 +12,8 @@ import javax.inject.Inject;
 public abstract class BaseActivity extends AppCompatActivity {
   @Inject Navigator mNavigator;
 
+  private ActivityModule mActivityModule;
+
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setupView();
@@ -23,11 +25,18 @@ public abstract class BaseActivity extends AppCompatActivity {
   protected abstract void initializeInjector();
   protected abstract void injectViewToPresenter();
 
+  @Override protected void onDestroy() {
+    super.onDestroy();
+    mActivityModule = null;
+    mNavigator = null;
+  }
+
   protected ApplicationComponent getApplicationComponent() {
     return ((AndroidApplication) getApplication()).getApplicationComponent();
   }
 
   protected ActivityModule getActivityModule() {
-    return new ActivityModule(this);
+    if (mActivityModule == null) mActivityModule = new ActivityModule(this);
+    return mActivityModule;
   }
 }
