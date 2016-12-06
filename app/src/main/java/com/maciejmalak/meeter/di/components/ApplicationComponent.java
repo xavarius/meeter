@@ -1,6 +1,7 @@
 package com.maciejmalak.meeter.di.components;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.maciejmalak.meeter.di.modules.ApplicationModule;
 import com.maciejmalak.meeter.di.scopes.PerApp;
@@ -17,4 +18,5 @@ public interface ApplicationComponent {
   ThreadExecutor threadExecutor();
   MainThread mainThread();
   FirebaseAuth firebaseAuth();
+  ConnectivityManager connectivityManager();
 }

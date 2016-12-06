@@ -24,8 +24,8 @@ class LoginPresenter
         firebaseAuthInteractor.setCallback(this)
     }
 
+    override fun onResumed() {}
     override fun onCreated() {}
-    override fun onStarted() {}
     override fun onStopped() {}
 
     override fun onActivityResulted(requestCode: Int, success: Boolean, data: Intent) {
@@ -39,6 +39,5 @@ class LoginPresenter
 
     override fun onFirebaseAuthError() = view.showErrLoginMessage()
     override fun onFirebaseUserAuthenticated() = view.launchHomeActivity()
-
     fun onGoogleSignBtnClicked() = view.launchGoogleSignIn(GOOGLE_SIGN_RESULT)
 }

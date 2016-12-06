@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 
 public interface BasePresenter {
    void onCreated();
-   void onStarted();
+   void onResumed();
    void onStopped();
    void onActivityResulted(int requestCode, boolean success, @NotNull Intent data);
 }
