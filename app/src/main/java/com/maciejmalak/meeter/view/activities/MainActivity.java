@@ -32,13 +32,13 @@ public class MainActivity extends BaseActivity implements HomeMapView {
     mPresenter.onCreated();
   }
 
-  @Override protected void setupView() {
+  @Override public void setupView() {
     setContentView(R.layout.activity_main);
     ButterKnife.bind(this);
     setSupportActionBar(mToolbar);
   }
 
-  @Override protected void initializeInjector() {
+  @Override public void initializeInjector() {
     final ActivityComponent component = DaggerActivityComponent.builder()
         .applicationComponent(getApplicationComponent())
         .activityModule(getActivityModule())
@@ -46,7 +46,7 @@ public class MainActivity extends BaseActivity implements HomeMapView {
     component.inject(this);
   }
 
-  @Override protected void injectViewToPresenter() {
+  @Override public void injectViewToPresenter() {
     mPresenter.setView(this);
   }
 

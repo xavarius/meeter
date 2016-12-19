@@ -1,6 +1,7 @@
 package com.maciejmalak.meeter.di.modules;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.maciejmalak.meeter.AndroidApplication;
 import com.maciejmalak.meeter.di.scopes.PerApp;
@@ -27,4 +28,8 @@ public class ApplicationModule {
   @Provides @PerApp MainThread provideMainThread() { return MainThreadImpl.getInstance(); }
 
   @Provides @PerApp FirebaseAuth provideFirebaseAuth() { return FirebaseAuth.getInstance(); }
+
+  @Provides @PerApp ConnectivityManager provideCM() {
+    return (ConnectivityManager) mApplication.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+  }
 }

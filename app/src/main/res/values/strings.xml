@@ -1,7 +1,10 @@
 <resources>
   <string name="app_name">meeter</string>
   <string name="sign_in_error">Something went wrong during signing in. Check internet. Try again.</string>
+  <string name="no_internet_connection_msg">In order to sign in you must have internet connection enabled. Please turn it on.</string>
 
+  <string name="action_on">Turn on</string>
 
-  <string name="FIREBASE_AUTH_TOKEN">632120346762-4lb8o8u37q25bg1cptkurmfsk8m66kmd.apps.googleusercontent.com</string>
+<!--It's debug api key nothing so special. -->
+  <string name="BLEBLEBLE123">632120346762-4lb8o8u37q25bg1cptkurmfsk8m66kmd.apps.googleusercontent.com</string>
 </resources>

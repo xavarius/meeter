@@ -28,12 +28,18 @@ public class LoginActivity extends BaseActivity implements LoginView {
     mPresenter.onActivityResulted(requestCode, (resultCode == RESULT_OK) , data);
   }
 
-  @Override protected void setupView() {
+  @Override protected void onDestroy() {
+    super.onDestroy();
+    mPresenter = null;
+    mGoogleSignClient = null;
+  }
+
+  @Override public void setupView() {
     setContentView(R.layout.activity_login);
     ButterKnife.bind(this);
   }
 
-  @Override protected void initializeInjector() {
+  @Override public void initializeInjector() {
     final LoginComponent component = DaggerLoginComponent.builder()
         .applicationComponent(getApplicationComponent())
         .activityModule(getActivityModule())
@@ -41,14 +47,8 @@ public class LoginActivity extends BaseActivity implements LoginView {
         component.inject(this);
   }
 
-  @Override protected void injectViewToPresenter() {
+  @Override public void injectViewToPresenter() {
     mPresenter.setView(this);
-  }
-
-  @Override protected void onDestroy() {
-    super.onDestroy();
-    mPresenter = null;
-    mGoogleSignClient = null;
   }
 
   @Override public void launchHomeActivity() {

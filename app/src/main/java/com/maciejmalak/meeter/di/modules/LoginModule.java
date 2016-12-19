@@ -24,7 +24,7 @@ public class LoginModule {
   @Provides @PerActivity GoogleApiClient providesGoogleSignAPI(final BaseActivity activity) {
     final GoogleSignInOptions gso =
         new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(activity.getResources().getString(R.string.FIREBASE_AUTH_TOKEN))
+            .requestIdToken(activity.getResources().getString(R.string.BLEBLEBLE123))
             .requestEmail().build();
     final String msg = activity.getResources().getString(R.string.sign_in_error);
 
